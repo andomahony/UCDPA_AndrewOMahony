@@ -26,3 +26,4 @@ ds = pd.read_csv(r"C:\Users\anom\Desktop\.ipynb_checkpoints\world-happiness-repo
 #print("Median life ex. 2020: ", (ds_2020["Healthy life expectancy at birth"].median()))
 
 print(ds.groupby("Country name")["Healthy life expectancy at birth"].mean())
+print("Andy O'Mahony")
