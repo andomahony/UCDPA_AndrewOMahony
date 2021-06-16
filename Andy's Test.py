@@ -75,4 +75,3 @@ T5_B5 = "{:.2f}".format(["Ladder score"])
 #plt.show()
 
 
-#print("Andy O'Mahony")
