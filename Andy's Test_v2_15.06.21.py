@@ -16,6 +16,12 @@ WHR05_20["Regional indicator"] = WHR05_20["Country name"].map(Country_dict)
 #print(WHR05_20.tail())
 
 WHR05_20 = WHR05_20.rename(columns={'Life Ladder': 'Ladder score'})
+check_for_nan= pd.isnull(WHR05_20)
+#print(check_for_nan)
+
+WHR05_20 = WHR05_20.dropna()
+print(WHR05_20)
+
 #WHR05_20 = WHR05_20.astype(str)
 #WHR19 = WHR05_20[WHR05_20["year"] == 2019]
 #WHR_tens = WHR05_20[WHR05_20["year"] == 2017]
@@ -54,25 +60,32 @@ WHR05_20 = WHR05_20.rename(columns={'Life Ladder': 'Ladder score'})
 #print("Median life ex. 2020: ", (ds_2020["Healthy life expectancy at birth"].median()))
 
 WHR_ave = WHR05_20.groupby("Country name")["Ladder score"].mean()
+#WHR_ri = WHR05_20.groupby("Country name")["Regional indicator"]
+#WHR_ave_ri = pd.merge(WHR_ave,WHR_ri,on='Country name',how='outer')
+
 WHR_T5 = pd.DataFrame(WHR_ave.sort_values(ascending=False).head(5))
-#WHR_T5["Regional indicator"] = WHR_T5.map(Country_dict)
+WHR_T5["Regional indicator"] = WHR_T5.index.map(Country_dict)
 WHR_B5 = pd.DataFrame(WHR_ave.sort_values(ascending=True).head(5))
-#WHR_B5["Regional indicator"] = WHR_B5.map(Country_dict)
+WHR_B5["Regional indicator"] = WHR_B5.index.map(Country_dict)
+
+#WHR_ave_ri = pd.concat([WHR_ave , WHR_ri], join="outer")
+#print(WHR_ave.head())
+#print(WHR_T5, WHR_B5)
 
 T5_B5 = pd.concat([WHR_T5, WHR_B5], join="outer")
-T5_B5 = T5_B5["Ladder score"].astype(str)
-T5_B5 = "{:.2f}".format(["Ladder score"])
-#print(T5_B5)
+#T5_B5 = T5_B5["Ladder score"].astype(float)
+print(T5_B5)
 
-#print(WHR_ave)
-#fig, ax = plt.subplots()
+print(WHR_ave)
+fig, ax = plt.subplots()
 
-#ax.barh(T5_B5.index, T5_B5)
-#ax.set_xlabel('Happiness')
-#plt.xticks(rotation=80)
-#plt.ylim(3, 8)
-#ax.set_title('Regional Happiness')
-#plt.show()
+ax.bar(T5_B5["Regional indicator"], T5_B5["Ladder score"])
+ax.set_xlabel('Region')
+ax.set_ylabel("Happiness Index")
+plt.xticks(rotation=0)
+plt.ylim(0, 8)
+ax.set_title('Regional Happiness')
+plt.show()
 
 
 #print("Andy O'Mahony")
