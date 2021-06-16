@@ -20,7 +20,7 @@ check_for_nan= pd.isnull(WHR05_20)
 #print(check_for_nan)
 
 WHR05_20 = WHR05_20.dropna()
-print(WHR05_20)
+#print(WHR05_20)
 
 #WHR05_20 = WHR05_20.astype(str)
 #WHR19 = WHR05_20[WHR05_20["year"] == 2019]
@@ -74,12 +74,33 @@ WHR_B5["Regional indicator"] = WHR_B5.index.map(Country_dict)
 
 T5_B5 = pd.concat([WHR_T5, WHR_B5], join="outer")
 #T5_B5 = T5_B5["Ladder score"].astype(float)
-print(T5_B5)
+#print(T5_B5)
 
-print(WHR_ave)
+WestE = T5_B5[T5_B5["Regional indicator"] == "Western Europe"]
+WestE.reset_index(inplace=True)
+#plt.show()
+
+#SubSA = T5_B5[T5_B5["Regional indicator"] == "Sub-Saharan Africa"]
+#SouthA = T5_B5[T5_B5["Regional indicator"] == "South Asia"]
+#print(type(WestE))
+#Merged_Reg = pd.concat([WestE, SubSA, SouthA])
+#print(Merged_Reg.keys())
+
+#print(Merged_Reg)
+
+#WestE = pd.array(WestE)
+print(WestE)
+
+# creates a stacked bar plot
+#Merged_Reg[0].plot(kind='bar', stacked=True)
+#plt.title("Regional Happiness")
+#plt.xlabel("Family Member")
+#plt.ylabel("Pies Consumed")
+
+#print(WHR_ave)
 fig, ax = plt.subplots()
 
-ax.bar(T5_B5["Regional indicator"], T5_B5["Ladder score"])
+ax.bar(WestE[["Country name", "Regional indicator"]], WestE["Ladder score"])
 ax.set_xlabel('Region')
 ax.set_ylabel("Happiness Index")
 plt.xticks(rotation=0)
