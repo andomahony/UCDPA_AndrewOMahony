@@ -27,10 +27,6 @@ WHR_B5 = pd.DataFrame(WHR_ave.sort_values(ascending=True).head(5))
 WHR_B5["Regional indicator"] = WHR_B5.index.map(Country_dict)
 WHR_B5.reset_index(inplace=True)
 
-# Joining Top and Bottom 5 to create 1 DF.
-T5_B5 = pd.concat([WHR_T5, WHR_B5], join="outer")
-T5_B5.reset_index(inplace=True)
-
 # Plotting the chart
 fig, ax = plt.subplots()
 ax.bar(WHR_T5["Country name"], WHR_T5["Ladder score"], label=WHR_T5["Regional indicator"].unique())
