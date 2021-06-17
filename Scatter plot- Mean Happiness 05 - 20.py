@@ -45,7 +45,7 @@ ax.scatter(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Ladder score"
 ax2.scatter(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Log GDP per capita"], color="r")
 ax.set_xlabel('Life expectancy')
 ax.set_ylabel("Happiness Index", color="g")
-ax2.set_ylabel("Log GDP", color="r")
+ax2.set_ylabel("Log GDP per capita", color="r")
 ax.tick_params(axis='x', which='major', length=6, pad=10,  labelsize=15, rotation=45)
 z = np.polyfit(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Ladder score"], 1)
 p = np.poly1d(z)
