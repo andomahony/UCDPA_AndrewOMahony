@@ -17,8 +17,28 @@ WHR05_20 = WHR05_20.rename(columns={'Life Ladder': 'Ladder score'})
 
 # Dropping row with NAN
 WHR05_20 = WHR05_20.dropna()
-WHR05_20.reset_index(inplace=True)
 
-print(WHR05_20)
+#From Top and Bottom 5 graph, we know that Denmark has the highest mean over time and Burundi has the lowest.
+#I want to see how they trend over time.
+
+WHR_DK = WHR05_20[WHR05_20['Country name'] == "Denmark"]
+WHR_BRU = WHR05_20[WHR05_20['Country name'] == "Burundi"]
+#print(WHR_DK, WHR_BRU)
+
+#WHD_TB = pd.concat([WHR_DK , WHR_BRU], join="outer")
+#print(WHD_TB)
+#print(WHR05_20)
+
+fig, ax = plt.subplots()
+ax.plot(WHR_DK["year"], WHR_DK["Ladder score"], color="g", linestyle = "--", marker="o", label="Denmark")
+ax.plot(WHR_BRU["year"], WHR_BRU["Ladder score"], color="r", linestyle = "--", marker=".", label="Burundi")
+#ax.annotate(">1 degree", xy=(2014, 3)), arrowprops={"arrowstyle":"->", "color":"gray"}
+ax.set_xlabel('Year')
+ax.set_ylabel("Happiness Index")
+ax.set_title("Top and bottom counties' happiness over time")
+plt.legend()
+plt.ylim(2, 10)
+plt.show()
+
 
 
