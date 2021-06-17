@@ -32,7 +32,7 @@ WHR_BRU = WHR05_20[WHR05_20['Country name'] == "Burundi"]
 fig, ax = plt.subplots()
 ax.plot(WHR_DK["year"], WHR_DK["Ladder score"], color="g", linestyle = "--", marker="o", label="Denmark")
 ax.plot(WHR_BRU["year"], WHR_BRU["Ladder score"], color="r", linestyle = "--", marker=".", label="Burundi")
-#ax.annotate(">1 degree", xy=(2014, 3)), arrowprops={"arrowstyle":"->", "color":"gray"}
+ax.annotate("Burundi's lowest rating", xy=(2014, 2.9), xytext=(.5, .4), textcoords="axes fraction", arrowprops=dict(facecolor='grey', shrink=1))
 ax.set_xlabel('Year')
 ax.set_ylabel("Happiness Index")
 ax.set_title("Top and bottom counties' happiness over time")
