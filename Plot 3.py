@@ -28,17 +28,25 @@ WHR_GDP.reset_index(inplace=True)
 WHR_LE = WHR05_20.groupby("Country name")["Healthy life expectancy at birth"].mean()
 WHR_LE = pd.DataFrame(WHR_LE)
 WHR_LE.reset_index(inplace=True)
-# Creating dictionaries to merge data
 GDP_dict = dict(zip(WHR_GDP["Country name"], WHR_GDP["Log GDP per capita"]))
 Life_E_dict = dict(zip(WHR_LE["Country name"], WHR_LE["Healthy life expectancy at birth"]))
 
-# Creating new columns in the 1 WHR_Mean DataFrame.
+# MERGING DATA IS NULLING VALUES>>> WHY????
+
+#WHR_Mean_GDP = pd.concat([WHR_Mean, WHR_GDP], join="outer")
+#print(T5_B5)
 WHR_Mean["Regional indicator"] = WHR_Mean["Country name"].map(Country_dict)
 WHR_Mean["Log GDP per capita"] = WHR_Mean["Country name"].map(GDP_dict)
 WHR_Mean["Healthy life expectancy at birth"] = WHR_Mean["Country name"].map(Life_E_dict)
 WHR_Mean = WHR_Mean.sort_values(["Log GDP per capita"], ascending=True)
 
-#Plotting the Scatter plot of Does Happiness increase with higher Life Expectancy and Higher Log GDP
+#WHR_ri = WHR05_20.groupby("Country name")["Regional indicator"]
+#WHR_ave_ri = pd.merge(WHR_ave,WHR_ri,on='Country name',how='outer')
+
+
+print(WHR_Mean)
+#print(WHR_T5, WHR_B5)
+
 fig, ax = plt.subplots()
 ax2=ax.twinx()
 ax.scatter(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Ladder score"], color="g")
@@ -51,5 +59,6 @@ z = np.polyfit(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Ladder sc
 p = np.poly1d(z)
 ax.plot(WHR_Mean["Healthy life expectancy at birth"], p(WHR_Mean["Healthy life expectancy at birth"]), "b:")
 plt.show()
+#plt.legend()
 ax.set_title("Mean Counties' Happiness")
 plt.show()
