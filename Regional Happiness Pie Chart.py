@@ -31,7 +31,10 @@ def pie_values(mean_values):
 
 # Plotting pie chart to display mean by region
 plt.pie(WHR_Reg_Mean["Ladder score"], labels=WHR_Reg_Mean["Regional indicator"], startangle=90, autopct=pie_values, explode =(0,0,0,0,0,0.2,0,0,0,0.1), shadow= True, textprops={'fontsize': 12})
-plt.title("Happiness by regional area")
+plt.title(r"Happiness by regional area")
+#plt.title(r"\begin{center} {\Large Temperature} \par {\large Humidity} \end{center}")
+#Font = 12
+#plt.rc("Happiness by regional area", titlesize=Font)
 plt.show()
 
 # Sorting and defining Country Mean from the top Region of North America and ANZ

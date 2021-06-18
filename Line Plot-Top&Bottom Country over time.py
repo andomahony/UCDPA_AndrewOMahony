@@ -22,11 +22,6 @@ WHR05_20 = WHR05_20.dropna()
 
 WHR_DK = WHR05_20[WHR05_20['Country name'] == "Denmark"]
 WHR_BRU = WHR05_20[WHR05_20['Country name'] == "Burundi"]
-#print(WHR_DK, WHR_BRU)
-
-#WHD_TB = pd.concat([WHR_DK , WHR_BRU], join="outer")
-#print(WHD_TB)
-#print(WHR05_20)
 
 fig, ax = plt.subplots()
 ax.plot(WHR_DK["year"], WHR_DK["Ladder score"], color="g", linestyle = "--", marker="o", label="Denmark")
