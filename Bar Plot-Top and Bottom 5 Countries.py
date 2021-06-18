@@ -36,6 +36,6 @@ ax.set_ylabel("Happiness Index")
 plt.xticks(rotation=45)
 plt.ylim(0, 10)
 plt.legend()
-ax.set_title("Ave top and bottom 5 counties' happiness")
+ax.set_title("Mean top and bottom 5 counties' happiness")
 plt.show()
 

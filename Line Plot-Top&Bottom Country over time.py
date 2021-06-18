@@ -34,7 +34,7 @@ ax.plot(WHR_BRU["year"], WHR_BRU["Ladder score"], color="r", linestyle = "--", m
 ax.annotate("Burundi's lowest rating = 2.9", xy=(2014, 3), xytext=(.5, .4), textcoords="axes fraction", arrowprops=dict(facecolor='grey', shrink=1))
 ax.set_xlabel('Year')
 ax.set_ylabel("Happiness Index")
-ax.set_title("Top and bottom counties' happiness over time")
+ax.set_title("Top and bottom ranked happiness over time")
 plt.legend()
 plt.ylim(2, 10)
 plt.show()
