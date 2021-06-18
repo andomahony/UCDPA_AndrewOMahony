@@ -24,7 +24,7 @@ WHR_Reg_Mean = WHR05_20.groupby("Regional indicator")["Ladder score"].mean()
 WHR_Reg_Mean = pd.DataFrame(WHR_Reg_Mean)
 WHR_Reg_Mean.reset_index(inplace=True)
 
-# Defining absolute
+# Defining values for displaying
 def pie_values(mean_values):
     display_values  = np.round(mean_values/100.*WHR_Reg_Mean["Ladder score"].sum(), 2)
     return display_values
@@ -33,3 +33,21 @@ def pie_values(mean_values):
 plt.pie(WHR_Reg_Mean["Ladder score"], labels=WHR_Reg_Mean["Regional indicator"], startangle=90, autopct=pie_values, explode =(0,0,0,0,0,0.2,0,0,0,0.1), shadow= True)
 plt.title("Happiness by regional area")
 plt.show()
+
+# Sorting and defining Country Mean from the top Region of North America and ANZ
+WHR_US_ANZ = WHR05_20.groupby("Country name")["Ladder score"].mean()
+WHR_US_ANZ = pd.DataFrame(WHR_US_ANZ)
+WHR_US_ANZ.reset_index(inplace=True)
+WHR_US_ANZ["Regional indicator"] = WHR_US_ANZ["Country name"].map(Country_dict)
+WHR_US_ANZ = WHR_US_ANZ[WHR_US_ANZ["Regional indicator"] == "North America and ANZ"]
+
+# Defining absolute values for Country from Top Regional area
+def pie_values_cn(mean_values_cn):
+    display_values_cn  = np.round(mean_values_cn/100.*WHR_US_ANZ["Ladder score"].sum(), 2)
+    return display_values_cn
+
+# Plotting pie chart to display mean by region
+plt.pie(WHR_US_ANZ["Ladder score"], labels=WHR_US_ANZ["Country name"], startangle=90, autopct=pie_values_cn, explode =(0,0.1,0,0), shadow= True)
+plt.title("Happiness by county from top region")
+plt.show()
+
