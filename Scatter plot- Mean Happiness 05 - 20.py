@@ -50,6 +50,6 @@ ax.tick_params(axis='x', which='major', length=6, pad=10,  labelsize=15, rotatio
 z = np.polyfit(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Ladder score"], 1)
 p = np.poly1d(z)
 ax.plot(WHR_Mean["Healthy life expectancy at birth"], p(WHR_Mean["Healthy life expectancy at birth"]), "b:")
+plt.title("Life expectancy against happiness & log GDP")
 plt.show()
-ax.set_title("Mean Counties' Happiness")
-plt.show()
+
