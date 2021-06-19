@@ -39,7 +39,7 @@ WHR_Mean = WHR_Mean.sort_values(["Log GDP per capita"], ascending=True)
 
 #Plotting the Scatter plot of Does Happiness increase with higher Life Expectancy and Higher Log GDP
 fig, ax = plt.subplots()
-ax2=ax.twinx()
+ax2 = ax.twinx()
 ax.scatter(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Ladder score"], color="g")
 ax2.scatter(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Log GDP per capita"], color="r")
 ax.set_xlabel('Life expectancy')
