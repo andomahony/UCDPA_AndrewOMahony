@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-pd.set_option('display.max_rows', 100)
-pd.set_option('display.max_columns', 100)
-pd.set_option('display.width', 100)
+pd.set_option("display.max_rows", 100)
+pd.set_option("display.max_columns", 100)
+pd.set_option("display.width", 100)
 
 # Bringing in files to created DataFrame and also "Regional Dictionary".
 
@@ -13,7 +13,7 @@ Country_dict = dict(zip(WHR21["Country name"], WHR21["Regional indicator"]))
 WHR05_20["Regional indicator"] = WHR05_20["Country name"].map(Country_dict)
 
 # Rename life ladder score
-WHR05_20 = WHR05_20.rename(columns={'Life Ladder': 'Ladder score'})
+WHR05_20 = WHR05_20.rename(columns={"Life Ladder": "Ladder score"})
 
 # Dropping row with NAN
 WHR05_20 = WHR05_20.dropna()
@@ -42,10 +42,10 @@ fig, ax = plt.subplots()
 ax2 = ax.twinx()
 ax.scatter(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Ladder score"], color="g")
 ax2.scatter(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Log GDP per capita"], color="r")
-ax.set_xlabel('Life expectancy')
+ax.set_xlabel("Life expectancy")
 ax.set_ylabel("Happiness Index", color="g", fontsize=20)
 ax2.set_ylabel("Log GDP per capita", color="r", fontsize=20)
-ax.tick_params(axis='x', which='major', length=6, pad=10,  labelsize=15, rotation=0)
+ax.tick_params(axis='x', which="major", length=6, pad=10,  labelsize=15, rotation=0)
 z = np.polyfit(WHR_Mean["Healthy life expectancy at birth"], WHR_Mean["Ladder score"], 1)
 p = np.poly1d(z)
 ax.plot(WHR_Mean["Healthy life expectancy at birth"], p(WHR_Mean["Healthy life expectancy at birth"]), "b:")
