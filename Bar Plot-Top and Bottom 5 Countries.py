@@ -17,7 +17,6 @@ WHR05_20 = WHR05_20.rename(columns={'Life Ladder': 'Ladder score'})
 # Dropping row with NAN
 WHR05_20 = WHR05_20.dropna()
 
-
 # Mean Score over years (2005 - 2020) and splitting top and bottom 5
 WHR_ave = WHR05_20.groupby("Country name")["Ladder score"].mean()
 WHR_T5 = pd.DataFrame(WHR_ave.sort_values(ascending=False).head(5))

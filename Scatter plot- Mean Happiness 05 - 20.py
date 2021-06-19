@@ -17,7 +17,6 @@ WHR05_20 = WHR05_20.rename(columns={'Life Ladder': 'Ladder score'})
 
 # Dropping row with NAN
 WHR05_20 = WHR05_20.dropna()
-WHR05_20.reset_index(inplace=True)
 
 WHR_Mean = WHR05_20.groupby("Country name")["Ladder score"].mean()
 WHR_Mean = pd.DataFrame(WHR_Mean)
